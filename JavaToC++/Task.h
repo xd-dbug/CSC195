@@ -1,6 +1,3 @@
-#ifndef TASK_H
-#define TASK_H
-
 #include <string>
 #include <sstream>
 using namespace std;
@@ -31,4 +28,4 @@ public:
     string toString() const;
 };
 
-#endif
+
