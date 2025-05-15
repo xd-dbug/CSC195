@@ -92,9 +92,9 @@ void TeamTaskTracker::deleteTask() {
      cin >> id;
     clearInput();
 
-    for (auto it = tasks.begin(); it != tasks.end(); ++it) {
-        if (it->getId() == id) {
-            tasks.erase(it);
+    for (auto i = tasks.begin(); i != tasks.end(); ++i) {
+        if (i->getId() == id) {
+            tasks.erase(i);
              cout << "Task deleted successfully!\n";
             return;
         }
