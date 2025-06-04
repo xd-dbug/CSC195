@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <fstream>
 #include <sstream>
 using namespace std;
 
@@ -27,6 +28,7 @@ public:
 
 
 	friend ostream& operator<<(std::ostream& os, const Task& task);
+
 
 
 protected:

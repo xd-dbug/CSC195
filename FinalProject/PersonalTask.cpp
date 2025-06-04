@@ -20,7 +20,7 @@ void PersonalTask::display() const {
         << "\n--------------------------\n";
 }
 
-void PersonalTask::saveToFile(std::ostream& os) const {
+void PersonalTask::saveToFile(ostream& os) const {
     os << "PERSONAL\n"; 
     os << taskId << '\n';
     os << description << '\n';
@@ -30,15 +30,25 @@ void PersonalTask::saveToFile(std::ostream& os) const {
     os << isRecurring << '\n';
 }
 
-void PersonalTask::loadFromFile(std::istream& is) {
-    getline(is, description);
-    getline(is, dueDate);
-    is >> isCompleted;
-    is.ignore();
-    std::getline(is, location);
-    is >> isRecurring;
-    is.ignore();
+void PersonalTask::loadFromFile(istream& is) {
+    string line;
+
+    getline(is, line);              
+    taskId = std::stoi(line);            
+
+    getline(is, description);       
+    getline(is, dueDate);           
+
+    getline(is, line);              
+    isCompleted = (line == "1" || line == "true");
+
+    getline(is, location);          
+
+    getline(is, line);              
+    isRecurring = (line == "1" || line == "true");
 }
+
+
 
 std::string PersonalTask::toString() const {
     ostringstream oss;

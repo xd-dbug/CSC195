@@ -4,7 +4,7 @@
 #include "PersonalTask.h"
 
 int main() {
-    TaskManager manager;
+    TaskManager* manager = new TaskManager;
     int choice;
 
     do {
@@ -35,7 +35,7 @@ int main() {
             cin >> priority;
             cin.ignore();
 
-            manager.addTask(std::make_unique<WorkTask>(desc, date, project, priority));
+            manager->addTask(std::make_unique<WorkTask>(desc, date, project, priority));
         }
         else if (choice == 2) {
             std::string desc, date, location;
@@ -51,23 +51,23 @@ int main() {
             cin >> recurring;
             cin.ignore();
 
-            manager.addTask(std::make_unique<PersonalTask>(desc, date, location, recurring));
+            manager->addTask(std::make_unique<PersonalTask>(desc, date, location, recurring));
         }
         else if (choice == 3) {
-            manager.displayAll();
+            manager->displayAll();
         }
         else if (choice == 4) {
             int id;
             cout << "Enter Task ID to remove: ";
             cin >> id;
             cin.ignore();
-            manager.removeTaskById(id);
+            manager->removeTaskById(id);
         }
         else if (choice == 5) {
-            manager.saveAllToFile("tasks.txt");
+            manager->saveAllToFile("tasks.txt");
         }
         else if (choice == 6) {
-            manager.loadAllFromFile("tasks.txt");
+            manager->loadAllFromFile("tasks.txt");
         }
 
         else if (choice == 7) {
@@ -75,11 +75,12 @@ int main() {
             cout << "Enter Task ID to mark complete: ";
             cin >> id;
             cin.ignore();
-            manager.markTaskComplete(id);
+            manager->markTaskComplete(id);
         }
 
     } while (choice != 0);
 
+	delete manager;
     cout << "Exiting...\n";
     return 0;
 }

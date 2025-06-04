@@ -33,15 +33,22 @@ void WorkTask::saveToFile(ostream& os) const
     os << priorityLevel << '\n';
 }
 
-void WorkTask::loadFromFile(istream& is)
-{
+void WorkTask::loadFromFile(istream& is) {
+    string line;
+
+    getline(is, line);
+    taskId = std::stoi(line);
+
     getline(is, description);
     getline(is, dueDate);
-    is >> isCompleted;
-    is.ignore(); 
+
+    getline(is, line);
+    isCompleted = (line == "1" || line == "true");
+
     getline(is, projectName);
-    is >> priorityLevel;
-    is.ignore();
+
+    getline(is, line);
+    priorityLevel = stoi(line);
 }
 
 string WorkTask::toString() const
